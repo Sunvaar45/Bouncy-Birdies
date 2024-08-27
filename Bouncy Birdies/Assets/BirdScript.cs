@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BirdScript : MonoBehaviour
@@ -10,6 +11,10 @@ public class BirdScript : MonoBehaviour
     public LogicScript logic;
     public bool birdIsAlive = true;
     public AudioSource wingFlapSFX;
+    public SpriteRenderer leftWing;
+    public SpriteRenderer rightWing;
+    public float flapTimer = 5;
+    private float sayac = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +30,36 @@ public class BirdScript : MonoBehaviour
         {    
             birdRigidbody.velocity = Vector2.up * flapStrength;
             wingFlapSFX.Play();
+            wingFlapDown();
+            sayac = 0;
         }
 
-        if (transform.position.y > 18 || transform.position.y < -18)
+        if (leftWing.flipY == true)
+        {
+            sayac += Time.deltaTime;
+            if (sayac >= flapTimer)
+            {
+                wingFlapUp();
+                sayac = 0;
+            }
+        }
+
+        if (transform.position.y > 18 || transform.position.y < -18) // kameranın dışına çıkınca gameover() çağır
         {
             logic.gameOver();
         }
+    }
+
+    public void wingFlapDown()
+    {   
+        leftWing.flipY = true;
+        rightWing.flipY = true;
+    }
+
+    public void wingFlapUp()
+    {
+        leftWing.flipY = false;
+        rightWing.flipY = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
