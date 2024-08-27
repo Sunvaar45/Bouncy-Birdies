@@ -10,6 +10,7 @@ public class LogicScript : MonoBehaviour
     public int playerScore;
     public Text scoreText;
     public Text highScoreText;
+    public GameObject startObject;
     public GameObject gameOverScreen;
     public BirdScript bird;
     public AudioSource bellRingSFX;
@@ -61,5 +62,11 @@ public class LogicScript : MonoBehaviour
     {
         gameOverScreen.SetActive(true);
         bird.birdIsAlive = false;
+    }
+
+    public void unpauseGame()
+    {
+        Time.timeScale = 1;
+        startObject.SetActive(false);
     }
 }

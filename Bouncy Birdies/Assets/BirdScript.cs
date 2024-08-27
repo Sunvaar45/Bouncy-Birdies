@@ -19,6 +19,7 @@ public class BirdScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0; // oyunu durdurulmuş bi şekilde başlatır
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
         wingFlapSFX = GetComponent<AudioSource>();
     }
@@ -26,10 +27,14 @@ public class BirdScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) == true && birdIsAlive == true) // space tuşuna basınca kuş zıplasın
+        if (Input.GetKeyDown(KeyCode.Space) == true && birdIsAlive == true) // space tuşuna basınca:
         {    
-            birdRigidbody.velocity = Vector2.up * flapStrength;
-            wingFlapSFX.Play();
+            logic.unpauseGame(); // oyunu durdurulmuş durumdan çıkar
+            birdRigidbody.velocity = Vector2.up * flapStrength; // kuş zıplat
+            if (leftWing.flipY == false)
+            {
+                wingFlapSFX.Play();
+            }
             wingFlapDown();
             sayac = 0;
         }
