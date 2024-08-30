@@ -24,7 +24,6 @@ public class BirdScript : MonoBehaviour
     {
         Time.timeScale = 0; // oyunu durdurulmuş bi şekilde başlatır
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
-        wingFlapSFX = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

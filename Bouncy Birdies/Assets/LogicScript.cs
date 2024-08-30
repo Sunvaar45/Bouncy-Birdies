@@ -14,10 +14,10 @@ public class LogicScript : MonoBehaviour
     public GameObject gameOverScreen;
     public BirdScript bird;
     public AudioSource bellRingSFX;
+    public AudioSource blippyMusic;
 
     void Start()
     {
-        bellRingSFX = GetComponent<AudioSource>();
         updateHighScore();
     }
 
