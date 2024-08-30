@@ -23,7 +23,7 @@ public class PipeMoveScript : MonoBehaviour
         // bu scripti taşıyan oyun objesi belirtilen x noktasını geçince imha olur
         if (transform.position.x < deadZone)
         {
-            Debug.Log("Pipe Removed");
+            // Debug.Log("Pipe Removed");
             Destroy(gameObject);
         }
     }

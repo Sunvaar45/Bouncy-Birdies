@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BirdScript : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class BirdScript : MonoBehaviour
     public LogicScript logic;
     public bool birdIsAlive = true;
     public AudioSource wingFlapSFX;
+    public float pitch_offset = 0.2f;
     public SpriteRenderer leftWing;
     public SpriteRenderer rightWing;
     public float flapTimer = 5;
@@ -33,7 +36,7 @@ public class BirdScript : MonoBehaviour
             birdRigidbody.velocity = Vector2.up * flapStrength; // kuş zıplat
             if (leftWing.flipY == false)
             {
-                wingFlapSFX.Play();
+                playWingSound();
             }
             wingFlapDown();
             sayac = 0;
@@ -65,6 +68,23 @@ public class BirdScript : MonoBehaviour
     {
         leftWing.flipY = false;
         rightWing.flipY = false;
+    }
+
+    public void playWingSound() // çırpma sesini çalmadan önce pitch değerini randomize et ve ses çaldıktan sonra default değerine döndür
+    {
+        float min_pitch = wingFlapSFX.pitch - pitch_offset;
+        float max_pitch = wingFlapSFX.pitch + pitch_offset;
+        float random_pitch = Random.Range(min_pitch, max_pitch + .01f);
+        wingFlapSFX.pitch = random_pitch;
+        wingFlapSFX.Play();
+
+        StartCoroutine(ResetPitchAfterDelay(wingFlapSFX.clip.length)); // coroutine'i çırpma ses klibinin uzunluğu kadar delay ile çağır
+    }                                                                  // yani pitch randomize edildikten sonra default değerine dönmesi için ses klibinin bitmesini bekler
+
+    private IEnumerator ResetPitchAfterDelay(float pitch_delay) // belirtilen delay kadar bekledikten sonra pitch değerini default a döndürmek için bir coroutine
+    {                                                           // çağrıldıktan sonraki frame lerde bile çalışmaya devam ettiğinden esnek çalışır
+        yield return new WaitForSeconds(pitch_delay);
+        wingFlapSFX.pitch = 1;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
