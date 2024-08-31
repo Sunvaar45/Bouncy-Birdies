@@ -8,8 +8,10 @@ using Random = UnityEngine.Random;
 
 public class BirdScript : MonoBehaviour
 {
+    // public Transform camPos;
     public Rigidbody2D birdRigidbody;
-    public float flapStrength;
+    public float flapStrength = 20;
+    // public float abilityStrength = 10;
     public LogicScript logic;
     public bool birdIsAlive = true;
     public AudioSource wingFlapSFX;
@@ -30,9 +32,13 @@ public class BirdScript : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) == true && birdIsAlive == true) // space tuşuna basınca:
-        {    
-            logic.unpauseGame(); // oyunu durdurulmuş durumdan çıkar
-            birdRigidbody.velocity = Vector2.up * flapStrength; // kuş zıplat
+        {   
+            if (Time.timeScale == 0)
+            {  
+                logic.unpauseGame(); // oyunu durdurulmuş durumdan çıkar
+            }
+            // birdRigidbody.velocity = Vector2.up * flapStrength; // kuş zıplat
+            birdRigidbody.velocity = new Vector2(birdRigidbody.velocity.x , flapStrength); // kuş zıplatma yol2
             if (leftWing.flipY == false)
             {
                 playWingSound();
@@ -40,6 +46,11 @@ public class BirdScript : MonoBehaviour
             wingFlapDown();
             sayac = 0;
         }
+
+        // if (Input.GetKeyDown(KeyCode.Q) == true && birdIsAlive == true)
+        // {
+        //     birdAbility();
+        // }
 
         if (leftWing.flipY == true)
         {
@@ -50,6 +61,8 @@ public class BirdScript : MonoBehaviour
                 sayac = 0;
             }
         }
+
+        // camPos.position = new Vector3(transform.position.x , camPos.position.y , camPos.position.z);
 
         if (transform.position.y > 18 || transform.position.y < -18) // kameranın dışına çıkınca gameover() çağır
         {
