@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PipeMoveScript : MonoBehaviour
 {
-    public float moveSpeed = 5;
-    // public float abilityMoveSpeed = 10;
+    public BirdScript bird;
+    public float moveSpeed = 7.5f;
     private float deadZone = -30;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        bird = GameObject.FindGameObjectWithTag("Bird").GetComponent<BirdScript>();
     }
 
     // Update is called once per frame
@@ -19,7 +19,11 @@ public class PipeMoveScript : MonoBehaviour
     {
         // objeyi taşıma satırı, vector3.left sola taşımak için kısa yol, moveSpeed ile çarparak hızını belirler ve sonucu time.deltatime ile çarparak
         // farklı fps lerde farklı sonuçlar almamayı garantiler.
-        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+        
+        if (bird.birdIsAlive == true)
+        {
+            transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+        }
 
         // bu scripti taşıyan oyun objesi belirtilen x noktasını geçince imha olur
         if (transform.position.x < deadZone)
@@ -28,14 +32,4 @@ public class PipeMoveScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    // public void ActivateAbilityMoveSpeed()
-    // {
-    //     moveSpeed = abilityMoveSpeed;
-    // }
-
-    // public void ResetMoveSpeed()
-    // {
-    //     moveSpeed = 5;
-    // }
 }
