@@ -6535,6 +6535,7 @@ GameObject:
   - component: {fileID: 2144344095}
   - component: {fileID: 2144344094}
   - component: {fileID: 2144344096}
+  - component: {fileID: 2144344097}
   m_Layer: 3
   m_Name: Bird
   m_TagString: Bird
@@ -6789,6 +6790,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2144344097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144344090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02573f7ee29fbe4185a43459acb193f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bird: {fileID: 2144344094}
+  pipeMove: {fileID: 8459789555431279327, guid: 910da130679c45446b025995b88cc830, type: 3}
+  spawner: {fileID: 119437114}
+  sayac: 0
+  abilityTimer: 1.5
 --- !u!1 &2144981670
 GameObject:
   m_ObjectHideFlags: 0
