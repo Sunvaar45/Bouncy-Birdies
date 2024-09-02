@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pipeGap: {fileID: 6535372541789798355, guid: 910da130679c45446b025995b88cc830, type: 3}
+  bird: {fileID: 2144344094}
   spawnRate: 2
   y_offset: 10
 --- !u!4 &119437115
@@ -492,8 +493,9 @@ GameObject:
   - component: {fileID: 328374945}
   - component: {fileID: 328374944}
   - component: {fileID: 328374943}
+  - component: {fileID: 328374946}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Cloud Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5311,6 +5313,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &328374946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328374942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d326776a3623f40a9ca456d5d5a72b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bird: {fileID: 2144344094}
+  clouds: {fileID: 328374944}
+  slowerCloudSpeed: 0.3
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -6803,10 +6820,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bird: {fileID: 2144344094}
-  pipeMove: {fileID: 8459789555431279327, guid: 910da130679c45446b025995b88cc830, type: 3}
-  spawner: {fileID: 119437114}
+  pipes:
+  - {fileID: 8459789555431279327, guid: 910da130679c45446b025995b88cc830, type: 3}
   sayac: 0
   abilityTimer: 1.5
+  abilityChoice: 2
 --- !u!1 &2144981670
 GameObject:
   m_ObjectHideFlags: 0
