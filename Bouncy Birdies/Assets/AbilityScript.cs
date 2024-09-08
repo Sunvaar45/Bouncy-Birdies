@@ -57,7 +57,7 @@ public class AbilityScript : MonoBehaviour
                 break;
 
             case 2:
-                chargeSpeedController(.5f);
+                chargeSpeedController(.5f); // fonksiyon çarptığı için yavaşlatmak için 1 / çarpanı kullandım
                 break;
 
             default:

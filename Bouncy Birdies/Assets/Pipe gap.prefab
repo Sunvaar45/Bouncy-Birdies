@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31983000a72e7d48853f44eb38e5ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bird: {fileID: 0}
   moveSpeed: 7.5
 --- !u!1 &7763096740735041891
 GameObject:
@@ -426,3 +427,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936e15401356c554db920ce0d2e7344d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bottomDeadZone: -24

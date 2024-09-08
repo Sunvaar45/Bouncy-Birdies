@@ -6824,7 +6824,7 @@ MonoBehaviour:
   - {fileID: 8459789555431279327, guid: 910da130679c45446b025995b88cc830, type: 3}
   sayac: 0
   abilityTimer: 1.5
-  abilityChoice: 2
+  abilityChoice: 1
 --- !u!1 &2144981670
 GameObject:
   m_ObjectHideFlags: 0
